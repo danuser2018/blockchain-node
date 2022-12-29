@@ -1,4 +1,5 @@
 [![Java CI](https://github.com/danuser2018/blockchain-node/actions/workflows/build.yml/badge.svg)](https://github.com/danuser2018/blockchain-node/actions/workflows/build.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=danuser2018_blockchain-node&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=danuser2018_blockchain-node)
 # Blockchain-node
 
 Mi propia implementación de un módulo de blockchain con fines educativos. 

@@ -21,8 +21,8 @@ class NodeCommandServiceImpl implements NodeCommandService {
 
     @Override
     public <T> void process(T command) {
-        if (command instanceof PublishNodeCommand) {
-            publishNodeCommandHandler.process((PublishNodeCommand) command);
+        if (command instanceof PublishNodeCommand publishNodeCommand) {
+            publishNodeCommandHandler.process(publishNodeCommand);
         } else {
             throw new IllegalArgumentException("Unknown command type [" + command.getClass().getName() + "]");
         }

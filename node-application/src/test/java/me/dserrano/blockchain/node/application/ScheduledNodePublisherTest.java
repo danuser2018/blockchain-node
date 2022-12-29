@@ -26,7 +26,7 @@ import static org.mockito.Mockito.*;
 
 @SpringBootTest(classes = {ScheduledNodePublisher.class, ScheduledNodePublisherTest.TestConfig.class})
 @ExtendWith(MockitoExtension.class)
-public class ScheduledNodePublisherTest {
+class ScheduledNodePublisherTest {
     private static final LocalDateTime now = LocalDateTime.now();
     @MockBean
     private NodeCommandService nodeCommandService;
