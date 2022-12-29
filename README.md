@@ -1,3 +1,4 @@
+[![Java CI](https://github.com/danuser2018/blockchain-node/actions/workflows/build.yml/badge.svg)](https://github.com/danuser2018/blockchain-node/actions/workflows/build.yml)
 # Blockchain-node
 
 Mi propia implementación de un módulo de blockchain con fines educativos.
