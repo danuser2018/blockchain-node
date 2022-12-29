@@ -5,6 +5,12 @@ Todos los cambios notables en este proyecto se documentarán en este archivo.
 El formato se basa en [Mantenga un changelog](https://keepachangelog.com/es/1.0.0/),
 y este proyecto se adhiere a [Versionado semántico](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2022-12-29
+
+### Añadido 
+
+- Nueva github action para hacer auto-tag de la versión subida a la rama main
+
 ## [1.2.1] - 2022-12-29
 
 ### Arreglado
