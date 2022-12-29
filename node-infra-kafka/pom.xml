@@ -7,7 +7,7 @@
     <parent>
         <groupId>me.dserrano</groupId>
         <artifactId>blockchain</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>node-infra-kafka</artifactId>
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>me.dserrano</groupId>
             <artifactId>node-domain</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 

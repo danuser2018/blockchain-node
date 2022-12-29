@@ -7,7 +7,7 @@
     <parent>
         <groupId>me.dserrano</groupId>
         <artifactId>blockchain</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>main-application</artifactId>
@@ -16,12 +16,12 @@
         <dependency>
             <groupId>me.dserrano</groupId>
             <artifactId>node-application</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>me.dserrano</groupId>
             <artifactId>node-infra-kafka</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
 
     </dependencies>
@@ -31,6 +31,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>false</skip>
+                    <mainClass>me.dserrano.blockchain.BlockchainApplication</mainClass>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
