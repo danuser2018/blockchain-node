@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = {NodeConfig.class, NodeConfigTest.TestConfig.class})
-public class NodeConfigTest {
+class NodeConfigTest {
     @TestConfiguration
     public static class TestConfig {
         @Bean
