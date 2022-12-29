@@ -1,7 +1,7 @@
 [![Java CI](https://github.com/danuser2018/blockchain-node/actions/workflows/build.yml/badge.svg)](https://github.com/danuser2018/blockchain-node/actions/workflows/build.yml)
 # Blockchain-node
 
-Mi propia implementación de un módulo de blockchain con fines educativos.
+Mi propia implementación de un módulo de blockchain con fines educativos. 
 
 Esta librería se desarrolla a partir de los ejercicios realizados durante el curso _Blockchain de la A a la Z:
 Crea tu propia criptomoneda en python_ que puedes encontrar en
