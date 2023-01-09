@@ -5,6 +5,12 @@ Todos los cambios notables en este proyecto se documentarán en este archivo.
 El formato se basa en [Mantenga un changelog](https://keepachangelog.com/es/1.0.0/),
 y este proyecto se adhiere a [Versionado semántico](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2023-01-09
+
+### Añadido
+
+- Nueva task que publica periódicamente los datos de conexión del nodo
+
 ## [1.4.1] - 2022-12-29
 
 ### Añadido

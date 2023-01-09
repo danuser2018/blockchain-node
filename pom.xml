@@ -20,7 +20,7 @@
 
     <modules>
         <module>main-application</module>
-        <module>node-infra-kafka</module>
+        <module>infra-kafka</module>
         <module>node-domain</module>
         <module>node-application</module>
     </modules>
@@ -32,6 +32,7 @@
         <jacoco.version>0.8.7</jacoco.version>
         <sonar.organization>danuser2018</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <testcontainers.version>1.17.6</testcontainers.version>
     </properties>
 
     <dependencies>
@@ -53,6 +54,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
