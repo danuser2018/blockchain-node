@@ -3,3 +3,12 @@ blockchain:
     self:
       host: localhost
       port: 8080
+    topic:
+      name: node-topic
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
