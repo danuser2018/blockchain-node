@@ -1,7 +1,7 @@
 package me.dserrano.blockchain.infra.kafka.node.producer;
 
 import lombok.Data;
-import me.dserrano.blockchain.infra.kafka.node.config.NodeEventProducerActionConfig;
+import me.dserrano.blockchain.infra.kafka.node.config.LoggingNodeEventProducerActionConfig;
 import me.dserrano.blockchain.infra.kafka.node.config.NodeTopicConfig;
 import me.dserrano.blockchain.infra.kafka.node.model.NodeEvent;
 import me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother;
@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest(classes = {
         NodeEventProducer.class,
         NodeTopicConfig.class,
-        NodeEventProducerActionConfig.class,
+        LoggingNodeEventProducerActionConfig.class,
         KafkaAutoConfiguration.class,
         NodeEventProducerIT.TestConsumer.class
 })
