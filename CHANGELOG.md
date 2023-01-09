@@ -5,6 +5,12 @@ Todos los cambios notables en este proyecto se documentarán en este archivo.
 El formato se basa en [Mantenga un changelog](https://keepachangelog.com/es/1.0.0/),
 y este proyecto se adhiere a [Versionado semántico](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.2] - 2023-01-09
+
+### Arreglado
+
+- Se arreglan dos code smells sobre la versión 1.5.0
+
 ## [1.5.1] - 2023-01-09
 
 ### Arreglado

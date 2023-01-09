@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
         NodeEventProducerIT.TestConsumer.class
 })
 @Testcontainers
-public class NodeEventProducerIT {
+class NodeEventProducerIT {
     @Container
     static final KafkaContainer kafkaContainer = new KafkaContainer(
             DockerImageName.parse("confluentinc/cp-kafka:6.2.1")
