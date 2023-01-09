@@ -16,12 +16,10 @@ import java.util.function.Function;
 public class LoggingNodeEventProducerActionConfig {
     @Bean
     Consumer<SendResult<String, NodeEvent>> onNodeEventProducerSuccessAction() {
-        return sendResult -> {
-            log.info("SelfNode notification delivered to " +
-                    "topic [" + sendResult.getRecordMetadata().topic() + "] " +
-                    "partition [" + sendResult.getRecordMetadata().partition() + "] " +
-                    "offset [" + sendResult.getRecordMetadata().offset() + "]");
-        };
+        return sendResult -> log.info("SelfNode notification delivered to " +
+                "topic [" + sendResult.getRecordMetadata().topic() + "] " +
+                "partition [" + sendResult.getRecordMetadata().partition() + "] " +
+                "offset [" + sendResult.getRecordMetadata().offset() + "]");
     }
 
     @Bean
