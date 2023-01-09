@@ -1,5 +1,6 @@
 package me.dserrano.blockchain.infra.kafka.node.config;
 
+import lombok.Generated;
 import lombok.extern.slf4j.Slf4j;
 import me.dserrano.blockchain.infra.kafka.node.model.NodeEvent;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +12,8 @@ import java.util.function.Function;
 
 @Configuration
 @Slf4j
-public class NodeEventProducerActionConfig {
+@Generated
+public class LoggingNodeEventProducerActionConfig {
     @Bean
     Consumer<SendResult<String, NodeEvent>> onNodeEventProducerSuccessAction() {
         return sendResult -> {
