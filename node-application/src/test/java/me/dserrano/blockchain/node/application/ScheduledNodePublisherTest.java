@@ -17,6 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 
 import java.time.LocalDateTime;
 import java.util.function.Supplier;
@@ -30,6 +32,12 @@ class ScheduledNodePublisherTest {
     private static final LocalDateTime now = LocalDateTime.now();
     @MockBean
     private NodeCommandService nodeCommandService;
+
+    @DynamicPropertySource
+    static void setProperties(DynamicPropertyRegistry registry) {
+        registry.add("blockchain.nodes.self.publish-rate-ms", () -> 60000);
+    }
+
     @TestConfiguration
     public static class TestConfig {
         @Bean
@@ -56,10 +64,10 @@ class ScheduledNodePublisherTest {
     private ArgumentCaptor<PublishNodeCommand> commandCaptor;
 
     @Test
-    @DisplayName("Before 5 minutes nodePublicationService is invoked for the first time")
-    void testNodePublicationServiceInvokedBefore5Minutes() {
+    @DisplayName("Before 1 minute nodePublicationService is invoked for the first time")
+    void testNodePublicationServiceInvokedBefore1Minute() {
         Awaitility.await()
-                .atMost(ofMinutes(5))
+                .atMost(ofMinutes(1))
                 .untilAsserted(() -> verify(nodeCommandService).process(commandCaptor.capture()));
 
         var result = commandCaptor.getValue();

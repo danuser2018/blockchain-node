@@ -5,6 +5,7 @@ import me.dserrano.blockchain.node.domain.model.command.PublishNodeCommand;
 import me.dserrano.blockchain.node.domain.ports.primary.NodeCommandService;
 import me.dserrano.blockchain.node.domain.ports.primary.NodeQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -30,7 +31,7 @@ public class ScheduledNodePublisher {
         this.nowSupplier = nowSupplier;
     }
 
-    @Scheduled(fixedRate = 300000) // 5 minutes
+    @Scheduled(fixedRateString = "${blockchain.nodes.self.publish-rate-ms}")
     public void publishSelfNode() {
         Node selfNode = nodeQueryService.getSelfNode();
         nodeCommandService.process(PublishNodeCommand.builder()

@@ -3,6 +3,7 @@ blockchain:
     self:
       host: localhost
       port: 8080
+      publish-rate-ms: 60000
     topic:
       name: node-topic
 
