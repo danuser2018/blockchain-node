@@ -2,6 +2,7 @@ package me.dserrano.blockchain.infra.kafka.node.mapper;
 
 import me.dserrano.blockchain.infra.kafka.node.model.NodeEvent;
 import me.dserrano.blockchain.node.domain.model.Node;
+import me.dserrano.blockchain.node.domain.model.command.UpdateNodeCommand;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -14,4 +15,10 @@ public interface NodeEventMapper {
     @Mapping(source = "node.port", target = "port")
     @Mapping(source = "dateTime", target = "dateTime")
     NodeEvent toNodeEvent(Node node, LocalDateTime dateTime);
+
+    @Mapping(source = "id", target = "node.id")
+    @Mapping(source = "host", target = "node.host")
+    @Mapping(source = "port", target = "node.port")
+    @Mapping(source = "dateTime", target = "dateTime")
+    UpdateNodeCommand toUpdateNodeCommand(NodeEvent event);
 }

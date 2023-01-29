@@ -1,6 +1,7 @@
 package me.dserrano.blockchain.infra.kafka.node.model;
 
 import me.dserrano.blockchain.node.domain.model.Node;
+import me.dserrano.blockchain.node.domain.model.command.UpdateNodeCommand;
 
 import java.time.LocalDateTime;
 
@@ -21,5 +22,10 @@ public class NodeEventMother {
             .id(uuid)
             .host(host)
             .port(port)
+            .build();
+
+    public static final UpdateNodeCommand updateNodeCommand = UpdateNodeCommand.builder()
+            .node(node)
+            .dateTime(dateTime)
             .build();
 }
