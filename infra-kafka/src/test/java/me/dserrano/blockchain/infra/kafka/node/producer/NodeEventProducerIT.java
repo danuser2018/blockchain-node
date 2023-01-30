@@ -4,7 +4,6 @@ import lombok.Data;
 import me.dserrano.blockchain.infra.kafka.node.config.LoggingNodeEventProducerActionConfig;
 import me.dserrano.blockchain.infra.kafka.node.config.NodeTopicConfig;
 import me.dserrano.blockchain.infra.kafka.node.model.NodeEvent;
-import me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -23,6 +22,8 @@ import org.testcontainers.utility.DockerImageName;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+
+import static me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother.nodeEvent;
 
 @SpringBootTest(classes = {
         NodeEventProducer.class,
@@ -72,11 +73,11 @@ class NodeEventProducerIT {
     @Test
     @DisplayName("Produce in kafka")
     void produceInKafka() throws Exception {
-        nodeEventProducer.produce(NodeEventMother.nodeEvent);
+        nodeEventProducer.produce(nodeEvent);
         boolean messageConsumed = consumer.getLatch().await(10, TimeUnit.SECONDS);
 
         Assertions.assertTrue(messageConsumed);
-        Assertions.assertEquals(NodeEventMother.nodeEvent.id(), consumer.getPayload().id());
-        Assertions.assertEquals(NodeEventMother.nodeEvent, consumer.getPayload());
+        Assertions.assertEquals(nodeEvent.id(), consumer.getPayload().id());
+        Assertions.assertEquals(nodeEvent, consumer.getPayload());
     }
 }

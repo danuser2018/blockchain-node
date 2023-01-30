@@ -3,7 +3,13 @@
 Todos los cambios notables en este proyecto se documentarán en este archivo.
 
 El formato se basa en [Mantenga un changelog](https://keepachangelog.com/es/1.0.0/),
-y este proyecto se adhiere a [Versionado semántico](https://semver.org/spec/v2.0.0.html).
+y este proyecto se adhiere a [Versionado semántico](https://semver.org/spec/v2.0.0.html). 
+
+## [1.6.1] - 2023-01-30
+
+### Modificado
+
+- Refactor del dominio de nodos, se separan los handlers de comandos de los puertos secundarios
 
 ## [1.6.0] - 2023-01-11
 
