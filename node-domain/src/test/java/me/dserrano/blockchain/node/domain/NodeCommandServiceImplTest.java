@@ -1,9 +1,9 @@
 package me.dserrano.blockchain.node.domain;
 
+import me.dserrano.blockchain.node.domain.command.handler.PublishNodeCommandHandler;
 import me.dserrano.blockchain.node.domain.model.NodeMother;
 import me.dserrano.blockchain.node.domain.model.command.PublishNodeCommand;
 import me.dserrano.blockchain.node.domain.ports.primary.NodeCommandService;
-import me.dserrano.blockchain.node.domain.ports.secondary.PublishNodeCommandHandler;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,7 +34,7 @@ class NodeCommandServiceImplTest {
 
         nodeCommandService.process(command);
 
-        verify(publishNodeCommandHandler).process(command);
+        verify(publishNodeCommandHandler).publish(command.node(), command.dateTime());
     }
 
     @Test
@@ -45,5 +45,4 @@ class NodeCommandServiceImplTest {
                 () -> nodeCommandService.process("A string")
         );
     }
-
 }

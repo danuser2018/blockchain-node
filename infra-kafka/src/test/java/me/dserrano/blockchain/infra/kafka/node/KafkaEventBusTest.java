@@ -4,19 +4,16 @@ import me.dserrano.blockchain.infra.kafka.node.mapper.NodeEventMapper;
 import me.dserrano.blockchain.infra.kafka.node.producer.NodeEventProducer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import static me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother.nodeEvent;
-import static me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother.publishNodeCommand;
+import static me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest(classes = KafkaPublishNodeCommandHandler.class)
-class KafkaPublishNodeCommandHandlerTest {
+@SpringBootTest(classes = KafkaEventBus.class)
+class KafkaEventBusTest {
     @MockBean
     private NodeEventMapper nodeEventMapper;
 
@@ -24,16 +21,16 @@ class KafkaPublishNodeCommandHandlerTest {
     private NodeEventProducer nodeEventProducer;
 
     @Autowired
-    private KafkaPublishNodeCommandHandler kafkaPublishNodeCommandHandler;
+    private KafkaEventBus kafkaEventBus;
 
     @Test
-    @DisplayName("Given a PublishNodeCommand then it produces in kafka node event topic")
+    @DisplayName("Given a Node and a DateTime then it produces in kafka node event topic")
     void testNodeEventProduction() {
-        when(nodeEventMapper.toNodeEvent(publishNodeCommand)).thenReturn(nodeEvent);
+        when(nodeEventMapper.toNodeEvent(node, dateTime)).thenReturn(nodeEvent);
 
-        kafkaPublishNodeCommandHandler.process(publishNodeCommand);
+        kafkaEventBus.publish(node, dateTime);
 
-        verify(nodeEventMapper).toNodeEvent(publishNodeCommand);
+        verify(nodeEventMapper).toNodeEvent(node, dateTime);
         verify(nodeEventProducer).produce(nodeEvent);
     }
 }
