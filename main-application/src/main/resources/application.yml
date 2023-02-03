@@ -1,6 +1,7 @@
 blockchain:
   nodes:
     self:
+      id: 7389e748-4590-496d-922b-72cd9265ba57
       host: localhost
       port: 8080
       publish-rate-ms: 60000

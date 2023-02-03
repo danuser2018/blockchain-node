@@ -5,18 +5,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.UUID;
-import java.util.function.Supplier;
-
 @Configuration
 public class NodeConfig {
     @Bean
-    Node selfNode(Supplier<UUID> uuidSupplier,
+    Node selfNode(@Value("${blockchain.nodes.self.id}") String selfNodeId,
                   @Value("${blockchain.nodes.self.host}") String selfNodeHost,
                   @Value("${blockchain.nodes.self.port}") int selfNodePort
     ) {
         return Node.builder()
-                .id(uuidSupplier.get().toString())
+                .id(selfNodeId)
                 .host(selfNodeHost)
                 .port(selfNodePort)
                 .build();
