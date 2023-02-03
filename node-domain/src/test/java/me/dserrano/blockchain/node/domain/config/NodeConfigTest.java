@@ -15,18 +15,11 @@ import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest(classes = {NodeConfig.class, NodeConfigTest.TestConfig.class})
+@SpringBootTest(classes = NodeConfig.class)
 class NodeConfigTest {
-    @TestConfiguration
-    public static class TestConfig {
-        @Bean
-        Supplier<UUID> uuidSupplier() {
-            return () -> UUID.fromString("c775a4d0-52a0-4a8c-b696-1c537e2a75ea");
-        }
-    }
-
     @DynamicPropertySource
     static void setProperties(DynamicPropertyRegistry registry) {
+        registry.add("blockchain.nodes.self.id", () -> "c775a4d0-52a0-4a8c-b696-1c537e2a75ea");
         registry.add("blockchain.nodes.self.host", () -> "localhost");
         registry.add("blockchain.nodes.self.port", () -> 8080);
     }
