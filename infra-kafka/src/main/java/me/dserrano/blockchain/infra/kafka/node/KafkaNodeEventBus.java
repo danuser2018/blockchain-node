@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 
 @Component
-public class KafkaEventBus implements NodeEventBus {
+public class KafkaNodeEventBus implements NodeEventBus {
     private final NodeEventMapper nodeEventMapper;
     private final NodeEventProducer nodeEventProducer;
 
-    public KafkaEventBus(NodeEventMapper nodeEventMapper, NodeEventProducer nodeEventProducer) {
+    public KafkaNodeEventBus(NodeEventMapper nodeEventMapper, NodeEventProducer nodeEventProducer) {
         this.nodeEventMapper = nodeEventMapper;
         this.nodeEventProducer = nodeEventProducer;
     }
