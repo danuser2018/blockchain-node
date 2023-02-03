@@ -1,7 +1,7 @@
 package me.dserrano.blockchain.node.application;
 
 import me.dserrano.blockchain.node.domain.model.Node;
-import me.dserrano.blockchain.node.domain.model.command.PublishNodeCommand;
+import me.dserrano.blockchain.node.domain.command.PublishNodeCommand;
 import me.dserrano.blockchain.node.domain.ports.primary.NodeCommandService;
 import me.dserrano.blockchain.node.domain.ports.primary.NodeQueryService;
 import org.awaitility.Awaitility;
@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
