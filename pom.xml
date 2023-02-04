@@ -23,6 +23,7 @@
         <module>infra-kafka</module>
         <module>node-domain</module>
         <module>node-application</module>
+        <module>infra-h2</module>
     </modules>
 
     <properties>
