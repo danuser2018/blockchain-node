@@ -4,21 +4,27 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "NODES")
-public record NodeEntity(
+public class NodeEntity {
         @Id
         @Column(name = "ID", nullable = false)
-        String id,
+        private String id;
         @Column(name = "HOST", nullable = false)
-        String host,
+        private String host;
         @Column(name = "PORT", nullable = false)
-        int port,
+        private int port;
         @Column(name = "DATE_TIME", nullable = false)
-        LocalDateTime dateTime
-) {}
+        private LocalDateTime dateTime;
+}

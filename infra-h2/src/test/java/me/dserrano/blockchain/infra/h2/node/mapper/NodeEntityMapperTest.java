@@ -19,9 +19,9 @@ public class NodeEntityMapperTest {
     @DisplayName("Mapping a node and a date to a node entity")
     void mappingTest() {
         NodeEntity result = nodeEntityMapper.toNodeEntity(node, dateTime);
-        assertEquals(node.id(), result.id());
-        assertEquals(node.host(), result.host());
-        assertEquals(node.port(), result.port());
-        assertEquals(dateTime, result.dateTime());
+        assertEquals(node.id(), result.getId());
+        assertEquals(node.host(), result.getHost());
+        assertEquals(node.port(), result.getPort());
+        assertEquals(dateTime, result.getDateTime());
     }
 }
