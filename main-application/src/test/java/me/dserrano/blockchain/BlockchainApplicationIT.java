@@ -2,6 +2,7 @@ package me.dserrano.blockchain;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.KafkaContainer;
@@ -11,19 +12,20 @@ import org.testcontainers.utility.DockerImageName;
 
 @SpringBootTest
 @Testcontainers
+@DirtiesContext
 class BlockchainApplicationIT {
 
-	@Container
-	static final KafkaContainer kafkaContainer = new KafkaContainer(
-			DockerImageName.parse("confluentinc/cp-kafka:6.2.1")
-	);
+    @Container
+    static final KafkaContainer kafkaContainer = new KafkaContainer(
+            DockerImageName.parse("confluentinc/cp-kafka:6.2.1")
+    );
 
-	@DynamicPropertySource
-	static void setProperties(DynamicPropertyRegistry registry) {
-		registry.add("spring.kafka.bootstrap-servers", kafkaContainer::getBootstrapServers);
-	}
+    @DynamicPropertySource
+    static void setProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.kafka.bootstrap-servers", kafkaContainer::getBootstrapServers);
+    }
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 }

@@ -12,8 +12,8 @@ import static me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest(classes = KafkaEventBus.class)
-class KafkaEventBusTest {
+@SpringBootTest(classes = KafkaNodeEventBus.class)
+class KafkaNodeEventBusTest {
     @MockBean
     private NodeEventMapper nodeEventMapper;
 
@@ -21,14 +21,14 @@ class KafkaEventBusTest {
     private NodeEventProducer nodeEventProducer;
 
     @Autowired
-    private KafkaEventBus kafkaEventBus;
+    private KafkaNodeEventBus kafkaNodeEventBus;
 
     @Test
     @DisplayName("Given a Node and a DateTime then it produces in kafka node event topic")
     void testNodeEventProduction() {
         when(nodeEventMapper.toNodeEvent(node, dateTime)).thenReturn(nodeEvent);
 
-        kafkaEventBus.publish(node, dateTime);
+        kafkaNodeEventBus.publish(node, dateTime);
 
         verify(nodeEventMapper).toNodeEvent(node, dateTime);
         verify(nodeEventProducer).produce(nodeEvent);

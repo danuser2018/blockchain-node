@@ -23,6 +23,7 @@
         <module>infra-kafka</module>
         <module>node-domain</module>
         <module>node-application</module>
+        <module>infra-h2</module>
     </modules>
 
     <properties>
@@ -33,6 +34,7 @@
         <sonar.organization>danuser2018</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <testcontainers.version>1.17.6</testcontainers.version>
+        <awaitility.version>4.2.0</awaitility.version>
     </properties>
 
     <dependencies>

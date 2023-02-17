@@ -1,8 +1,10 @@
 package me.dserrano.blockchain.node.domain;
 
+import me.dserrano.blockchain.node.domain.command.UpdateNodeCommand;
 import me.dserrano.blockchain.node.domain.command.handler.PublishNodeCommandHandler;
+import me.dserrano.blockchain.node.domain.command.handler.UpdateNodeCommandHandler;
 import me.dserrano.blockchain.node.domain.model.NodeMother;
-import me.dserrano.blockchain.node.domain.model.command.PublishNodeCommand;
+import me.dserrano.blockchain.node.domain.command.PublishNodeCommand;
 import me.dserrano.blockchain.node.domain.ports.primary.NodeCommandService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,6 +25,9 @@ class NodeCommandServiceImplTest {
     @MockBean
     private PublishNodeCommandHandler publishNodeCommandHandler;
 
+    @MockBean
+    UpdateNodeCommandHandler updateNodeCommandHandler;
+
     @Autowired
     private NodeCommandService nodeCommandService;
 
@@ -35,6 +40,17 @@ class NodeCommandServiceImplTest {
         nodeCommandService.process(command);
 
         verify(publishNodeCommandHandler).publish(command.node(), command.dateTime());
+    }
+
+    @Test
+    @DisplayName("Given a UpdateNodeCommand then updateNodeCommandHandler is invoked")
+    void testUpdateNodeCommandHandlerIsProcessed() {
+        var now = LocalDateTime.now();
+        var command = UpdateNodeCommand.builder().node(NodeMother.node).dateTime(now).build();
+
+        nodeCommandService.process(command);
+
+        verify(updateNodeCommandHandler).update(command.node(), command.dateTime());
     }
 
     @Test
