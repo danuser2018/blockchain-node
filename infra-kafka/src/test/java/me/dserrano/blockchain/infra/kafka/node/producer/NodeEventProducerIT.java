@@ -5,7 +5,7 @@ import me.dserrano.blockchain.infra.kafka.node.config.LoggingNodeEventProducerAc
 import me.dserrano.blockchain.infra.kafka.node.config.NodeTopicConfig;
 import me.dserrano.blockchain.infra.kafka.node.model.NodeEvent;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.junit.jupiter.api.Assertions;
+import org.awaitility.Awaitility;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.KafkaContainer;
@@ -20,10 +21,11 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 import static me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother.nodeEvent;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(classes = {
         NodeEventProducer.class,
@@ -33,6 +35,7 @@ import static me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother.node
         NodeEventProducerIT.TestConsumer.class
 })
 @Testcontainers
+@DirtiesContext
 class NodeEventProducerIT {
     @Container
     static final KafkaContainer kafkaContainer = new KafkaContainer(
@@ -46,6 +49,7 @@ class NodeEventProducerIT {
         registry.add("spring.kafka.producer.key-serializer", () -> "org.apache.kafka.common.serialization.StringSerializer");
         registry.add("spring.kafka.producer.value-serializer", () -> "org.springframework.kafka.support.serializer.JsonSerializer");
         registry.add("spring.kafka.consumer.group-id", () -> "group-id");
+        registry.add("spring.kafka.consumer.auto-offset-reset", () -> "earliest");
         registry.add("spring.kafka.consumer.key-deserializer", () -> "org.apache.kafka.common.serialization.StringDeserializer");
         registry.add("spring.kafka.consumer.value-deserializer", () -> "org.springframework.kafka.support.serializer.JsonDeserializer");
         registry.add("spring.kafka.consumer.properties.spring.json.trusted.packages", () -> "*");
@@ -54,13 +58,13 @@ class NodeEventProducerIT {
     @Data
     @Component
     public static class TestConsumer {
-        private CountDownLatch latch = new CountDownLatch(1);
+        private boolean consumed = false;
         private NodeEvent payload;
 
         @KafkaListener(topics = "${blockchain.nodes.topic.name}")
         public void receive(ConsumerRecord<String, NodeEvent> record) {
             payload = record.value();
-            latch.countDown();
+            consumed = true;
         }
     }
 
@@ -72,12 +76,12 @@ class NodeEventProducerIT {
 
     @Test
     @DisplayName("Produce in kafka")
-    void produceInKafka() throws Exception {
+    void produceInKafka() {
         nodeEventProducer.produce(nodeEvent);
-        boolean messageConsumed = consumer.getLatch().await(10, TimeUnit.SECONDS);
+        Awaitility.await()
+                .atMost(Duration.ofMinutes(1))
+                .untilAsserted(() -> assertTrue(consumer.isConsumed()));
 
-        Assertions.assertTrue(messageConsumed);
-        Assertions.assertEquals(nodeEvent.id(), consumer.getPayload().id());
-        Assertions.assertEquals(nodeEvent, consumer.getPayload());
+        assertEquals(nodeEvent, consumer.getPayload());
     }
 }
