@@ -35,7 +35,7 @@ import static org.mockito.Mockito.when;
 })
 @Testcontainers
 @DirtiesContext
-public class NodeEventConsumerIT {
+class NodeEventConsumerIT {
     @Container
     static final KafkaContainer kafkaContainer = new KafkaContainer(
             DockerImageName.parse("confluentinc/cp-kafka:6.2.1")

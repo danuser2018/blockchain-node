@@ -5,6 +5,12 @@ Todos los cambios notables en este proyecto se documentarán en este archivo.
 El formato se basa en [Mantenga un changelog](https://keepachangelog.com/es/1.0.0/),
 y este proyecto se adhiere a [Versionado semántico](https://semver.org/spec/v2.0.0.html). 
 
+## [1.9.1] - 2023-02-19
+
+### Arreglado
+
+- Se solucionan algunos code smells encontrados por sonar
+
 ## [1.9.0] - 2023-02-15
 
 ### Añadido
@@ -15,7 +21,7 @@ y este proyecto se adhiere a [Versionado semántico](https://semver.org/spec/v2.
 
 ### Añadido
 
-- Nuevo VagrantFile para levantar un entorno de desarrollo estándarizado
+- Nuevo VagrantFile para levantar un entorno de desarrollo estandarizado
 
 ## [1.7.0] - 2023-02-03
 

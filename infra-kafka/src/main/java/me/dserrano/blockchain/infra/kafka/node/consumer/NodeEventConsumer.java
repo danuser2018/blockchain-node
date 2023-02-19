@@ -20,8 +20,8 @@ public class NodeEventConsumer {
     }
 
     @KafkaListener(topics = "${blockchain.nodes.topic.name}")
-    public void receive(ConsumerRecord<String, NodeEvent> record) {
-        log.info("Status notification received for node [" + record.value().id() + "]");
-        nodeCommandService.process(nodeEventMapper.toUpdateNodeCommand(record.value()));
+    public void receive(ConsumerRecord<String, NodeEvent> event) {
+        log.info("Status notification received for node [" + event.value().id() + "]");
+        nodeCommandService.process(nodeEventMapper.toUpdateNodeCommand(event.value()));
     }
 }

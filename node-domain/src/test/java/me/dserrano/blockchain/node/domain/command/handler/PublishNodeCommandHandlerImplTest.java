@@ -13,7 +13,7 @@ import static me.dserrano.blockchain.node.domain.model.NodeMother.node;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest(classes = PublishNodeCommandHandlerImpl.class)
-public class PublishNodeCommandHandlerImplTest {
+class PublishNodeCommandHandlerImplTest {
     @MockBean
     private NodeEventBus nodeEventBus;
 

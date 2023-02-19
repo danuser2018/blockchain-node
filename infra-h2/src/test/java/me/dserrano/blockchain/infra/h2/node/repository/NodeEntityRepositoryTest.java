@@ -10,7 +10,7 @@ import static me.dserrano.blockchain.infra.h2.node.model.NodeEntityMother.nodeEn
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
-public class NodeEntityRepositoryTest {
+class NodeEntityRepositoryTest {
     @Autowired
     private NodeEntityRepository nodeEntityRepository;
 
