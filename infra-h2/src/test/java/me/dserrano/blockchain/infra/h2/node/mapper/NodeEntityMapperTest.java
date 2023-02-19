@@ -11,7 +11,7 @@ import static me.dserrano.blockchain.infra.h2.node.model.NodeEntityMother.node;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = NodeEntityMapperImpl.class)
-public class NodeEntityMapperTest {
+class NodeEntityMapperTest {
     @Autowired
     private NodeEntityMapper nodeEntityMapper;
 

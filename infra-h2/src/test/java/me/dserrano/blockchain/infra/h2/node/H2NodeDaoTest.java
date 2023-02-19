@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = H2NodeDao.class)
-public class H2NodeDaoTest {
+class H2NodeDaoTest {
     @MockBean
     private NodeEntityMapper nodeEntityMapper;
 
