@@ -5,6 +5,13 @@ Todos los cambios notables en este proyecto se documentarán en este archivo.
 El formato se basa en [Mantenga un changelog](https://keepachangelog.com/es/1.0.0/),
 y este proyecto se adhiere a [Versionado semántico](https://semver.org/spec/v2.0.0.html). 
 
+## [1.9.2] - 2023-02-27
+
+### Modificado
+
+- Se refactoriza la carpeta ```local-env```, que ahora pasa a ser ```.local-env```
+- Se completa la información del ```README.md``` para incluir como levantar el clúster local de kafka
+
 ## [1.9.1] - 2023-02-19
 
 ### Arreglado

@@ -24,6 +24,26 @@ $ ./mvnw clean install
 
 ### Ejecutando el proyecto
 
+#### Kafka broker local
+
+Para ejecutar el proyecto necesitas un clúster kafka con que poder interactuar. 
+En la carpeta ```.local-env/kafka``` encontrarás un clúster de kafka dockerizado
+que puedes utilizar para ejecutar el servicio en local.
+
+Para levantar el clúster, desde la carpeta ```.local-env/kafka``` :
+
+```
+docker-compose up
+```
+
+Para detener el servicio:
+
+```
+docker-compose down
+```
+
+#### Levantando el servicio en local
+
 En la raiz del proyecto, ejecuta:
 ```
 $ ./mvnw spring-boot:run
