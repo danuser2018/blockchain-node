@@ -23,6 +23,9 @@ class BlockchainApplicationIT {
     @DynamicPropertySource
     static void setProperties(DynamicPropertyRegistry registry) {
         registry.add("spring.kafka.bootstrap-servers", kafkaContainer::getBootstrapServers);
+        registry.add("blockchain.nodes.self.id", () ->  "self-id");
+        registry.add("blockchain.nodes.self.host", () ->  "localhost");
+        registry.add("blockchain.nodes.self.port", () ->  8080);
     }
 
     @Test
