@@ -1,16 +1,12 @@
 blockchain:
   nodes:
     self:
-      id: 7389e748-4590-496d-922b-72cd9265ba57
-      host: localhost
-      port: 8080
       publish-rate-ms: 60000
     topic:
       name: node-topic
 
 spring:
   kafka:
-    bootstrap-servers: localhost:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -30,4 +26,4 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate.ddl-auto: update
     generate-ddl: true
-  h2.console.enabled: true
+  h2.console.enabled: false
