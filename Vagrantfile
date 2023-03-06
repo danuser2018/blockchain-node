@@ -20,7 +20,8 @@ sudo mkdir -m 0755 -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update --yes
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin --yes
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose --yes
+sudo apt-get install gnupg2 pass --yes
 sudo usermod -a -G docker vagrant
 INSTALL_DOCKER_ENDSCRIPT
 
@@ -32,4 +33,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
   config.vm.provision "shell", inline: $apt_update
   config.vm.provision "shell", inline: $install_java_17
   config.vm.provision "shell", inline: $install_docker
+  config.vm.network "forwarded_port", guest: 8080, host:8080
+  config.vm.network "forwarded_port", guest: 8081, host:8081
+  config.vm.network "forwarded_port", guest: 8082, host:8082
 end

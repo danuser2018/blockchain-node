@@ -11,6 +11,10 @@ Crea tu propia criptomoneda en python_ que puedes encontrar en
 
 ## Propiedades de configuración
 
+El servicio está basado en [Spring Boot](https://spring.io/projects/spring-boot), y está pensado
+para ser ejecutado como una aplicación dockerizada. El puerto de escucha (dentro del contenedor) 
+está predefinido al **8080**.
+
 ### Información del propio nodo
 
 #### Obligatorias
@@ -40,54 +44,138 @@ Crea tu propia criptomoneda en python_ que puedes encontrar en
 
 #### Opcionales
 
-| Propiedad                  | Valor por defecto | Descripción                                                              |
-|----------------------------|-------------------|--------------------------------------------------------------------------|
-| spring.datasource.username | sa                | Usuario de acceso a la base de datos                                     |
-| spring.datasource.password | password          | Password de acceso a la base de datos. **Es muy recomendable cambiarlo** |
-| spring.h2.console.enabled  | false             | Activa/Desactiva la consola de H2                                        |
+| Propiedad                                   | Valor por defecto | Descripción                                                              |
+|---------------------------------------------|-------------------|--------------------------------------------------------------------------|
+| spring.datasource.username                  | sa                | Usuario de acceso a la base de datos                                     |
+| spring.datasource.password                  | password          | Password de acceso a la base de datos. **Es muy recomendable cambiarlo** |
+| spring.h2.console.enabled                   | false             | Activa/Desactiva la consola de H2                                        |
+| spring.h2.console.settings.web-allow-others | false             | Permite el acceso desde el exterior a la consola de H2                   |
 
 ## Para construir el proyecto
 
 ### Previo
 
-Este proyecto utiliza Java 17. Debes tener configurado en tu entorno un SDK de la versión
-17 y la variable JAVA_HOME apuntando a esta SDK.
+Para evitar que tengas que instalar todo el software necesario para construir y ejecutar el proyecto en local,
+este proyecto utiliza [Vagrant](https://www.vagrantup.com/).
+
+Para que [Vagrant](https://www.vagrantup.com/) funcione, necesitarás instalar:
+
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+* [Vagrant](https://www.vagrantup.com/downloads.html)
+
+Una vez tengas instalado [Vagrant](https://www.vagrantup.com/), ejectuando
+
+```
+$ vagrant up
+```
+
+levantarás una máquina virtual Ubuntu con:
+
+* Java 17
+* Docker
+
+A la máquina virtual se accede mediante ```ssh```, ejecutando sobre la raiz del proyecto
+
+```
+$ vagrant ssh
+```
+
+La máquina virtual se puede detener, utilizando el comando
+
+```
+$ vagrant halt
+```
+
+o bien destruir, usando
+
+```
+$ vagrant destroy
+```
 
 ### Construyecto el proyecto
 
-En la raiz del proyecto, ejecuta:
+Dentro de la máquina virtual, el código del proyecto se encuentra en la carpeta ```/vagrant```. 
+Para construir el proyecto, tendremos que ejecutar:
 
 ```
-$ ./mvnw clean install
+$ ./mvnw clean package 
+```
+
+o si solo queremos verificar que se pasan los tests
+
+```
+$ ./mvnw clean verify
 ```
 
 ### Ejecutando el proyecto
 
-#### Kafka broker local
+Este servicio está pensado para ejecutar como una aplicación dockerizada.
 
-Para ejecutar el proyecto necesitas un clúster kafka con que poder interactuar.
-En la carpeta ```.local-env/kafka``` encontrarás un clúster de kafka dockerizado
-que puedes utilizar para ejecutar el servicio en local.
+#### Ejecución local
 
-Para levantar el clúster, desde la carpeta ```.local-env/kafka``` :
+El proyecto contiene todo lo necesario para levantar en el entorno de desarrollo que generamos 
+con [Vagrant](https://www.vagrantup.com/):
 
-```
-docker-compose up
-```
+* Un clúster de kafka, compuesto por un nodo y una base de datos Zookeeper.
+* Tres nodos mineros
 
-Para detener el servicio:
-
-```
-docker-compose down
-```
-
-#### Levantando el servicio en local
-
-En la raiz del proyecto, ejecuta:
+Si es la primera que entras al entorno, deberás generar inicialmente la imagen [Docker](https://www.docker.com/)
+para los mineros. Para generarla, accederemos al entorno de desarrollo:
 
 ```
-$ ./mvnw spring-boot:run
+$ vagrant ssh
 ```
+
+y desde la raíz del proyecto (carpeta ```/vagrant```) ejecutaremos
+
+```
+$ docker build -t blockchain-miner .
+```
+
+Con esto construiremos la imagen docker que se utilizará en el despliegue de los tres
+nodos mineros.
+
+Para arrancar el sistema, deberemos movernos a la carpeta ```/vagrant/.local-env```, donde encontraremos un archivo
+```docker-compose.yml``` que nos ayudará a levantar el sistema.
+
+Para levantar el sistema ejecutaremos
+
+```
+$ docker-compose up -d
+```
+
+y para detenerlo
+
+```
+$ docker-compose down
+```
+
+Mediante el uso de comandos ```docker``` podremos realizar distintas acciones sobre los
+contenedores creados. Dejo aquí los más útiles:
+
+```
+$ docker ps -a                              # Lista todos los contenedores
+$ docker stop $container_id                 # Detiene un contenedor
+$ docker start $container_id                # Arranca un contener que se detuvo previamente
+$ docker rm $container_id                   # Borra un contenedor (previamente debe estar parado)
+$ docker container logs $container_id       # Muestra los logs de un contenedor. Con -f los sigue (follow mode)
+$ docker exec -it $container_id /bin/bash   # Abre una sesión interactiva contra el contenedor
+$ docker inspect $container_id -f "{{json .NetworkSettings.Networks }}" # Da detalles de la red a la que se encuentra conectado el contenedor 
+```
+
+#### Acceso a la base de datos de los nodos
+
+Los nodos mineros tienen activo el acceso a la consola de h2. El acceso a la misma se realiza desde local, mediante
+un navegador web, accediendo a las siguientes URLs:
+
+```
+http://localhost:8080/h2-console    # Nodo minero 1
+http://localhost:8081/h2-console    # Nodo minero 2
+http://localhost:8082/h2-console    # Nodo minero 3
+```
+
+La cadena de conexión a la base de datos es ```jdbc:h2:mem:nodesdb```, el usuario ```sa``` 
+y el password ```password```
 
 ## Licencia
 

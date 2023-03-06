@@ -1,0 +1,53 @@
+version: '2'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
+  miner1:
+    depends_on:
+      - kafka
+    image: blockchain-miner
+    ports:
+      - "8080:8080"
+    environment:
+      BLOCKCHAIN_NODES_SELF_ID: a9358023-1feb-4d52-936e-fb57682ebea0
+      BLOCKCHAIN_NODES_SELF_HOST: miner1
+      BLOCKCHAIN_NODES_SELF_PORT: 8080
+      SPRING_KAFKA_BOOTSTRAPSERVERS: PLAINTEXT://kafka:9092
+      SPRING_H2_CONSOLE_ENABLED: 'true'
+      SPRING_H2_CONSOLE_SETTINGS_WEBALLOWOTHERS: 'true'
+  miner2:
+    depends_on:
+      - kafka
+    image: blockchain-miner
+    ports:
+      - "8081:8080"
+    environment:
+      BLOCKCHAIN_NODES_SELF_ID: 50970e1a-85cd-423c-b24d-c70055a6d43c
+      BLOCKCHAIN_NODES_SELF_HOST: miner2
+      BLOCKCHAIN_NODES_SELF_PORT: 8081
+      SPRING_KAFKA_BOOTSTRAPSERVERS: PLAINTEXT://kafka:9092
+      SPRING_H2_CONSOLE_ENABLED: 'true'
+      SPRING_H2_CONSOLE_SETTINGS_WEBALLOWOTHERS: 'true'
+  miner3:
+    depends_on:
+      - kafka
+    image: blockchain-miner
+    ports:
+      - "8082:8080"
+    environment:
+      BLOCKCHAIN_NODES_SELF_ID: bdd14558-0370-4139-ba65-8f1142b8a2a5
+      BLOCKCHAIN_NODES_SELF_HOST: miner3
+      BLOCKCHAIN_NODES_SELF_PORT: 8082
+      SPRING_KAFKA_BOOTSTRAPSERVERS: PLAINTEXT://kafka:9092
+      SPRING_H2_CONSOLE_ENABLED: 'true'
+      SPRING_H2_CONSOLE_SETTINGS_WEBALLOWOTHERS: 'true'

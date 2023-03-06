@@ -5,11 +5,18 @@ Todos los cambios notables en este proyecto se documentarán en este archivo.
 El formato se basa en [Mantenga un changelog](https://keepachangelog.com/es/1.0.0/),
 y este proyecto se adhiere a [Versionado semántico](https://semver.org/spec/v2.0.0.html). 
 
+## [1.12.0] - 2023-03-06
+
+### Añadido
+
+- Nueva configuración para dockerizar la aplicación (```Dockerfile```)
+- Nuevo entorno de ejecución local
+
 ## [1.11.0] - 2023-03-01
 
 ### Cambiado
 
-Se definen aquellas propiedades que son obligatorias para que un nodo funcione
+- Se definen aquellas propiedades que son obligatorias para que un nodo funcione
 
 ## [1.10.0] - 2023-02-27
 
