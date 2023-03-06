@@ -26,4 +26,3 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate.ddl-auto: update
     generate-ddl: true
-  h2.console.enabled: false
