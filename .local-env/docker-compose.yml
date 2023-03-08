@@ -15,7 +15,7 @@ services:
   miner1:
     depends_on:
       - kafka
-    image: blockchain-miner
+    image: ghcr.io/danuser2018/blockchain-miner:latest
     ports:
       - "8080:8080"
     environment:
@@ -28,7 +28,7 @@ services:
   miner2:
     depends_on:
       - kafka
-    image: blockchain-miner
+    image: ghcr.io/danuser2018/blockchain-miner:latest
     ports:
       - "8081:8080"
     environment:
@@ -41,7 +41,7 @@ services:
   miner3:
     depends_on:
       - kafka
-    image: blockchain-miner
+    image: ghcr.io/danuser2018/blockchain-miner:latest
     ports:
       - "8082:8080"
     environment:

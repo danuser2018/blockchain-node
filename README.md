@@ -119,21 +119,8 @@ con [Vagrant](https://www.vagrantup.com/):
 * Un clúster de kafka, compuesto por un nodo y una base de datos Zookeeper.
 * Tres nodos mineros
 
-Si es la primera que entras al entorno, deberás generar inicialmente la imagen [Docker](https://www.docker.com/)
-para los mineros. Para generarla, accederemos al entorno de desarrollo:
-
-```
-$ vagrant ssh
-```
-
-y desde la raíz del proyecto (carpeta ```/vagrant```) ejecutaremos
-
-```
-$ docker build -t blockchain-miner .
-```
-
-Con esto construiremos la imagen docker que se utilizará en el despliegue de los tres
-nodos mineros.
+La imagen docker que se utilizará en el despliegue de los tres nodos mineros está actualizada con la última versión
+generada del paquete **blockchain-node**.
 
 Para arrancar el sistema, deberemos movernos a la carpeta ```/vagrant/.local-env```, donde encontraremos un archivo
 ```docker-compose.yml``` que nos ayudará a levantar el sistema.
