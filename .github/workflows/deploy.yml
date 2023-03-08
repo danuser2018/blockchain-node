@@ -1,6 +1,5 @@
-name: Java CI
+name: Java CD
 on:
-  workflow_dispatch:
   push:
     branches: [ main ]
 

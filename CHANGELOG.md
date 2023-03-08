@@ -5,6 +5,18 @@ Todos los cambios notables en este proyecto se documentarán en este archivo.
 El formato se basa en [Mantenga un changelog](https://keepachangelog.com/es/1.0.0/),
 y este proyecto se adhiere a [Versionado semántico](https://semver.org/spec/v2.0.0.html). 
 
+## [1.13.1] - 2023-03-08
+
+### Arreglado
+
+- Cambio de nombre en la pipeline de despliegue continuo
+
+## [1.13.0] - 2023-03-08
+
+### Añadido
+
+- Nueva pipeline para despliegue continuo
+
 ## [1.12.0] - 2023-03-06
 
 ### Añadido
