@@ -19,7 +19,7 @@
     <description>Peer node for a blockchain</description>
 
     <modules>
-        <module>main-application</module>
+        <module>main</module>
         <module>infra-kafka</module>
         <module>domain</module>
         <module>application</module>
