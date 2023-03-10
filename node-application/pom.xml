@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>me.dserrano</groupId>
-            <artifactId>node-domain</artifactId>
+            <artifactId>domain</artifactId>
             <version>1.0.0</version>
         </dependency>
 
