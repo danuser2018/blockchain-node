@@ -1,7 +1,7 @@
 package me.dserrano.blockchain.infra.kafka.node.mapper;
 
 import me.dserrano.blockchain.infra.kafka.node.model.NodeEvent;
-import me.dserrano.blockchain.node.domain.command.UpdateNodeCommand;
+import me.dserrano.blockchain.domain.node.command.UpdateNodeCommand;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

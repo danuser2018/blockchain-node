@@ -1,9 +1,9 @@
 package me.dserrano.blockchain.node.application;
 
-import me.dserrano.blockchain.node.domain.model.Node;
-import me.dserrano.blockchain.node.domain.command.PublishNodeCommand;
-import me.dserrano.blockchain.node.domain.ports.primary.NodeCommandService;
-import me.dserrano.blockchain.node.domain.ports.primary.NodeQueryService;
+import me.dserrano.blockchain.domain.node.model.Node;
+import me.dserrano.blockchain.domain.node.command.PublishNodeCommand;
+import me.dserrano.blockchain.domain.node.ports.primary.NodeCommandService;
+import me.dserrano.blockchain.domain.node.ports.primary.NodeQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;

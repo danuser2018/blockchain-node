@@ -3,7 +3,7 @@ package me.dserrano.blockchain.infra.kafka.node.consumer;
 import lombok.extern.slf4j.Slf4j;
 import me.dserrano.blockchain.infra.kafka.node.mapper.NodeEventMapper;
 import me.dserrano.blockchain.infra.kafka.node.model.NodeEvent;
-import me.dserrano.blockchain.node.domain.ports.primary.NodeCommandService;
+import me.dserrano.blockchain.domain.node.ports.primary.NodeCommandService;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
