@@ -1,4 +1,4 @@
-package me.dserrano.blockchain.node.application;
+package me.dserrano.blockchain.application.node;
 
 import me.dserrano.blockchain.domain.node.model.Node;
 import me.dserrano.blockchain.domain.node.command.PublishNodeCommand;
