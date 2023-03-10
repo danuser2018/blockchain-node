@@ -22,7 +22,7 @@
         <module>main-application</module>
         <module>infra-kafka</module>
         <module>domain</module>
-        <module>node-application</module>
+        <module>application</module>
         <module>infra-h2</module>
     </modules>
 

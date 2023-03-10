@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>me.dserrano</groupId>
-            <artifactId>node-application</artifactId>
+            <artifactId>application</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
