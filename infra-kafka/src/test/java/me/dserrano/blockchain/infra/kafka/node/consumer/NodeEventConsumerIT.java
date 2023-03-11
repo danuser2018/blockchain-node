@@ -3,7 +3,7 @@ package me.dserrano.blockchain.infra.kafka.node.consumer;
 import me.dserrano.blockchain.infra.kafka.node.config.NodeTopicConfig;
 import me.dserrano.blockchain.infra.kafka.node.mapper.NodeEventMapper;
 import me.dserrano.blockchain.infra.kafka.node.model.NodeEvent;
-import me.dserrano.blockchain.node.domain.ports.primary.NodeCommandService;
+import me.dserrano.blockchain.domain.node.ports.primary.NodeCommandService;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

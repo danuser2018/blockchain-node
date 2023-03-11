@@ -10,34 +10,23 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>infra-kafka</artifactId>
+    <artifactId>main</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>me.dserrano</groupId>
-            <artifactId>domain</artifactId>
+            <artifactId>application</artifactId>
             <version>1.0.0</version>
         </dependency>
-
         <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
+            <groupId>me.dserrano</groupId>
+            <artifactId>infra-kafka</artifactId>
+            <version>1.0.0</version>
         </dependency>
-
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka-test</artifactId>
-            <scope>test</scope>
+            <groupId>me.dserrano</groupId>
+            <artifactId>infra-h2</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <dependency>
@@ -58,18 +47,24 @@
             <version>${testcontainers.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>org.awaitility</groupId>
-            <artifactId>awaitility</artifactId>
-            <version>${awaitility.version}</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>false</skip>
+                    <mainClass>me.dserrano.blockchain.BlockchainApplication</mainClass>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -89,5 +84,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
