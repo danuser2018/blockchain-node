@@ -38,9 +38,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push the blockchain-miner Docker image
+      - name: Build and push the blockchain-node Docker image
         run: |
-          docker build . --tag ghcr.io/danuser2018/blockchain-miner:$GITVERSION_MAJORMINORPATCH
-          docker tag ghcr.io/danuser2018/blockchain-miner:$GITVERSION_MAJORMINORPATCH ghcr.io/danuser2018/blockchain-miner:latest
-          docker push ghcr.io/danuser2018/blockchain-miner:$GITVERSION_MAJORMINORPATCH
-          docker push ghcr.io/danuser2018/blockchain-miner:latest  
+          docker build . --tag ghcr.io/danuser2018/blockchain-node:$GITVERSION_MAJORMINORPATCH
+          docker tag ghcr.io/danuser2018/blockchain-node:$GITVERSION_MAJORMINORPATCH ghcr.io/danuser2018/blockchain-node:latest
+          docker push ghcr.io/danuser2018/blockchain-node:$GITVERSION_MAJORMINORPATCH
+          docker push ghcr.io/danuser2018/blockchain-node:latest  
