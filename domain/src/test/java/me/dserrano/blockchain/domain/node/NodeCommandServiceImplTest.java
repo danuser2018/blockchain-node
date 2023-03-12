@@ -1,7 +1,5 @@
 package me.dserrano.blockchain.domain.node;
 
-import me.dserrano.blockchain.domain.node.command.PublishNodeCommand;
-import me.dserrano.blockchain.domain.node.command.handler.PublishNodeCommandHandler;
 import me.dserrano.blockchain.domain.node.command.UpdateNodeCommand;
 import me.dserrano.blockchain.domain.node.command.handler.UpdateNodeCommandHandler;
 import me.dserrano.blockchain.domain.node.model.NodeMother;
@@ -23,24 +21,10 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 class NodeCommandServiceImplTest {
     @MockBean
-    private PublishNodeCommandHandler publishNodeCommandHandler;
-
-    @MockBean
     UpdateNodeCommandHandler updateNodeCommandHandler;
 
     @Autowired
     private NodeCommandService nodeCommandService;
-
-    @Test
-    @DisplayName("Given a PublishNodeCommand then publishNodeCommandHandler is invoked")
-    void testPublishNodeCommandHandlerIsProcessed() {
-        var now = LocalDateTime.now();
-        var command = PublishNodeCommand.builder().node(NodeMother.node).dateTime(now).build();
-
-        nodeCommandService.process(command);
-
-        verify(publishNodeCommandHandler).publish(command.node(), command.dateTime());
-    }
 
     @Test
     @DisplayName("Given a UpdateNodeCommand then updateNodeCommandHandler is invoked")

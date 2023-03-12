@@ -1,5 +1,7 @@
-package me.dserrano.blockchain.domain.node.command.handler;
+package me.dserrano.blockchain.domain.node;
 
+import me.dserrano.blockchain.domain.node.PublishNodeServiceImpl;
+import me.dserrano.blockchain.domain.node.ports.primary.PublishNodeService;
 import me.dserrano.blockchain.domain.node.ports.secondary.NodeEventBus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,19 +14,19 @@ import java.time.LocalDateTime;
 import static me.dserrano.blockchain.domain.node.model.NodeMother.node;
 import static org.mockito.Mockito.verify;
 
-@SpringBootTest(classes = PublishNodeCommandHandlerImpl.class)
-class PublishNodeCommandHandlerImplTest {
+@SpringBootTest(classes = PublishNodeServiceImpl.class)
+class PublishNodeServiceImplTest {
     @MockBean
     private NodeEventBus nodeEventBus;
 
     @Autowired
-    private PublishNodeCommandHandler publishNodeCommandHandler;
+    private PublishNodeService publishNodeService;
 
     @Test
     @DisplayName("Publish node command handler calls the node event bus to publish the node info")
     void testPublishCommandHandlerCallsNodeEventBus() {
         var dateTime = LocalDateTime.now();
-        publishNodeCommandHandler.publish(node, dateTime);
+        publishNodeService.publish(node, dateTime);
 
         verify(nodeEventBus).publish(node, dateTime);
     }
