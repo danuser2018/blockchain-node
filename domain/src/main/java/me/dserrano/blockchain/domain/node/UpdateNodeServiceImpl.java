@@ -1,5 +1,6 @@
-package me.dserrano.blockchain.domain.node.command.handler;
+package me.dserrano.blockchain.domain.node;
 
+import me.dserrano.blockchain.domain.node.ports.primary.UpdateNodeService;
 import me.dserrano.blockchain.domain.node.model.Node;
 import me.dserrano.blockchain.domain.node.ports.primary.NodeQueryService;
 import me.dserrano.blockchain.domain.node.ports.secondary.NodeDao;
@@ -8,13 +9,13 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 
 @Component
-public class UpdateNodeCommandHandlerImpl implements UpdateNodeCommandHandler {
+public class UpdateNodeServiceImpl implements UpdateNodeService {
 
     private final NodeQueryService nodeQueryService;
 
     private final NodeDao nodeDao;
 
-    public UpdateNodeCommandHandlerImpl(NodeQueryService nodeQueryService, NodeDao nodeDao) {
+    public UpdateNodeServiceImpl(NodeQueryService nodeQueryService, NodeDao nodeDao) {
         this.nodeQueryService = nodeQueryService;
         this.nodeDao = nodeDao;
     }

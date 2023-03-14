@@ -1,8 +1,8 @@
 package me.dserrano.blockchain.infra.kafka.node.mapper;
 
+import me.dserrano.blockchain.application.node.command.UpdateNodeCommand;
 import me.dserrano.blockchain.infra.kafka.node.model.NodeEvent;
 import me.dserrano.blockchain.domain.node.model.Node;
-import me.dserrano.blockchain.domain.node.command.UpdateNodeCommand;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

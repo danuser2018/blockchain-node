@@ -5,12 +5,18 @@ Todos los cambios notables en este proyecto se documentarán en este archivo.
 El formato se basa en [Mantenga un changelog](https://keepachangelog.com/es/1.0.0/),
 y este proyecto se adhiere a [Versionado semántico](https://semver.org/spec/v2.0.0.html). 
 
+## [1.15.0] - 2023-03-14
+
+### Cambiado
+
+- Comunicación asíncrona de eventos dentro de la capa de aplicación: Actualización de datos de nodos vecinos
+- Se baja la memoria de la máquina virtual creada por Vagrant a 2 GB
+
 ## [1.14.0] - 2023-03-12
 
 ### Cambiado
 
-- Comunicación asíncrona de eventos dentro de la capa de aplicación
-
+- Comunicación asíncrona de eventos dentro de la capa de aplicación: Notificación del propio nodo
 
 ## [1.13.5] - 2023-03-12
 
