@@ -1,27 +1,45 @@
 package me.dserrano.blockchain.infra.kafka.node.consumer;
 
+import lombok.Data;
+import me.dserrano.blockchain.application.node.command.PublishNodeCommand;
+import me.dserrano.blockchain.application.node.command.UpdateNodeCommand;
 import me.dserrano.blockchain.infra.kafka.node.mapper.NodeEventMapper;
 import me.dserrano.blockchain.infra.kafka.node.model.NodeEvent;
-import me.dserrano.blockchain.domain.node.ports.primary.NodeCommandService;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.awaitility.Awaitility;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
-import static me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother.nodeEvent;
-import static me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother.updateNodeCommand;
+import static java.time.Duration.ofMinutes;
+import static me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother.*;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest(classes = NodeEventConsumer.class)
+@SpringBootTest(classes = { NodeEventConsumer.class, NodeEventConsumerTest.TestListener.class })
 class NodeEventConsumerTest {
+    @Data
+    @Component
+    public static class TestListener {
+        private boolean consumed = false;
+        private UpdateNodeCommand payload;
+
+        @EventListener(UpdateNodeCommand.class)
+        public void consumeEvent(UpdateNodeCommand command) {
+            payload = command;
+            consumed = true;
+        }
+    }
+
+    @Autowired
+    TestListener testListener;
 
     @MockBean
     private NodeEventMapper nodeEventMapper;
-
-    @MockBean
-    private NodeCommandService nodeCommandService;
 
     @Autowired
     private NodeEventConsumer nodeEventConsumer;
@@ -29,14 +47,23 @@ class NodeEventConsumerTest {
     @Test
     @DisplayName("When consume, then UpdateNodeCommand is send to domain")
     void consumeSuccessfully() {
-        ConsumerRecord<String, NodeEvent> record = mock(ConsumerRecord.class);
+        ConsumerRecord record = mock(ConsumerRecord.class);
         when(record.value()).thenReturn(nodeEvent);
 
         when(nodeEventMapper.toUpdateNodeCommand(nodeEvent)).thenReturn(updateNodeCommand);
 
         nodeEventConsumer.receive(record);
 
-        verify(nodeCommandService).process(updateNodeCommand);
+        Awaitility.await()
+                .atMost(ofMinutes(1))
+                .untilAsserted(() -> Assertions.assertTrue(testListener.isConsumed()));
+
+        var result = testListener.getPayload();
+
+        Assertions.assertEquals(uuid, result.node().id());
+        Assertions.assertEquals(host, result.node().host());
+        Assertions.assertEquals(port, result.node().port());
+        Assertions.assertEquals(dateTime, result.dateTime());
     }
 
 }

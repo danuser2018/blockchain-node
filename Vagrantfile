@@ -28,7 +28,7 @@ INSTALL_DOCKER_ENDSCRIPT
 Vagrant.configure(VAGRANT_API_VERSION) do |config|
   config.vm.box = VAGRANT_VIRTUAL_BOX
   config.vm.provider "virtualbox" do |vbox|
-    vbox.memory = 4096
+    vbox.memory = 2048
   end
   config.vm.provision "shell", inline: $apt_update
   config.vm.provision "shell", inline: $install_java_17

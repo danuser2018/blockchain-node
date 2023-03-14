@@ -1,6 +1,8 @@
-package me.dserrano.blockchain.domain.node.command.handler;
+package me.dserrano.blockchain.domain.node;
 
+import me.dserrano.blockchain.domain.node.UpdateNodeServiceImpl;
 import me.dserrano.blockchain.domain.node.ports.primary.NodeQueryService;
+import me.dserrano.blockchain.domain.node.ports.primary.UpdateNodeService;
 import me.dserrano.blockchain.domain.node.ports.secondary.NodeDao;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,8 +16,8 @@ import static me.dserrano.blockchain.domain.node.model.NodeMother.anotherNode;
 import static me.dserrano.blockchain.domain.node.model.NodeMother.node;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest(classes = UpdateNodeCommandHandlerImpl.class)
-class UpdateNodeCommandHandlerImplTest {
+@SpringBootTest(classes = UpdateNodeServiceImpl.class)
+class UpdateNodeServiceImplTest {
 
     @MockBean
     NodeQueryService nodeQueryService;
@@ -24,7 +26,7 @@ class UpdateNodeCommandHandlerImplTest {
     NodeDao nodeDao;
 
     @Autowired
-    UpdateNodeCommandHandler updateNodeCommandHandler;
+    UpdateNodeService updateNodeService;
 
     @Test
     @DisplayName("When node is the self node then node dao is not invoked")
@@ -33,7 +35,7 @@ class UpdateNodeCommandHandlerImplTest {
 
         when(nodeQueryService.getSelfNode()).thenReturn(node);
 
-        updateNodeCommandHandler.update(node, dateTime);
+        updateNodeService.update(node, dateTime);
 
         verifyNoInteractions(nodeDao);
     }
@@ -45,7 +47,7 @@ class UpdateNodeCommandHandlerImplTest {
 
         when(nodeQueryService.getSelfNode()).thenReturn(node);
 
-        updateNodeCommandHandler.update(anotherNode, dateTime);
+        updateNodeService.update(anotherNode, dateTime);
 
         verify(nodeDao).saveNodeInfo(anotherNode, dateTime);
     }

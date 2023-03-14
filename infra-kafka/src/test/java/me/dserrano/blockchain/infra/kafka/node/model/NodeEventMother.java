@@ -1,7 +1,7 @@
 package me.dserrano.blockchain.infra.kafka.node.model;
 
+import me.dserrano.blockchain.application.node.command.UpdateNodeCommand;
 import me.dserrano.blockchain.domain.node.model.Node;
-import me.dserrano.blockchain.domain.node.command.UpdateNodeCommand;
 
 import java.time.LocalDateTime;
 

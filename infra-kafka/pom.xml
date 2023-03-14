@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>me.dserrano</groupId>
-            <artifactId>domain</artifactId>
+            <artifactId>application</artifactId>
             <version>1.0.0</version>
         </dependency>
 
