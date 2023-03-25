@@ -1,4 +1,4 @@
-package me.dserrano.blockchain.application.node.config;
+package me.dserrano.blockchain.application.config;
 
 import lombok.Generated;
 import org.springframework.context.annotation.Bean;
@@ -14,4 +14,7 @@ public class DateTimeConfig {
     Supplier<LocalDateTime> nowSupplier() {
         return LocalDateTime::now;
     }
+
+    @Bean
+    Supplier<Long> currentTimeMillis() { return System::currentTimeMillis; }
 }

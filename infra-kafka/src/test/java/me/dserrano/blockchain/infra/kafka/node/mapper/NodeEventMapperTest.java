@@ -1,8 +1,7 @@
 package me.dserrano.blockchain.infra.kafka.node.mapper;
 
-import me.dserrano.blockchain.application.node.command.UpdateNodeCommand;
+import me.dserrano.blockchain.application.event.UpdateChainRequestReceived;
 import me.dserrano.blockchain.infra.kafka.node.model.NodeEvent;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +29,10 @@ class NodeEventMapperTest {
     @Test
     @DisplayName("Mapping a NodeEvent to a UpdateNodeCommand")
     void mappingNodeEventToPublishNodeCommandTest() {
-        UpdateNodeCommand result = nodeEventMapper.toUpdateNodeCommand(nodeEvent);
-        assertEquals(nodeEvent.id(), result.node().id());
-        assertEquals(nodeEvent.host(), result.node().host());
-        assertEquals(nodeEvent.port(), result.node().port());
-        assertEquals(nodeEvent.dateTime(), result.dateTime());
+        UpdateChainRequestReceived result = nodeEventMapper.toUpdateChainRequestReceived(nodeEvent);
+        assertEquals(nodeEvent.id(), result.updateChainRequest().node().id());
+        assertEquals(nodeEvent.host(), result.updateChainRequest().node().host());
+        assertEquals(nodeEvent.port(), result.updateChainRequest().node().port());
+        assertEquals(nodeEvent.dateTime(), result.updateChainRequest().dateTime());
     }
 }

@@ -1,4 +1,4 @@
-package me.dserrano.blockchain.application.node.config;
+package me.dserrano.blockchain.application.config;
 
 import lombok.Generated;
 import org.springframework.context.annotation.Bean;
