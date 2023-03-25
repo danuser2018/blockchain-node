@@ -1,22 +1,18 @@
 package me.dserrano.blockchain.infra.kafka.node.consumer;
 
-import lombok.Data;
-import me.dserrano.blockchain.application.node.command.UpdateNodeCommand;
+import me.dserrano.blockchain.application.publisher.UpdateChainRequestReceivedPublisher;
 import me.dserrano.blockchain.infra.kafka.node.config.NodeTopicConfig;
-import me.dserrano.blockchain.infra.kafka.node.mapper.NodeEventMapper;
 import me.dserrano.blockchain.infra.kafka.node.mapper.NodeEventMapperImpl;
 import me.dserrano.blockchain.infra.kafka.node.model.NodeEvent;
 import org.awaitility.Awaitility;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.event.EventListener;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -25,20 +21,15 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
-import java.time.Duration;
-
 import static java.time.Duration.ofMinutes;
-import static me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother.*;
-import static me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother.dateTime;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static me.dserrano.blockchain.infra.kafka.node.model.NodeEventMother.nodeEvent;
+import static org.mockito.ArgumentMatchers.any;
 
 @SpringBootTest(classes = {
         NodeEventConsumer.class,
         NodeTopicConfig.class,
         KafkaAutoConfiguration.class,
         NodeEventMapperImpl.class,
-        NodeEventConsumerIT.TestListener.class
 })
 @Testcontainers
 @DirtiesContext
@@ -61,21 +52,8 @@ class NodeEventConsumerIT {
         registry.add("spring.kafka.consumer.properties.spring.json.trusted.packages", () -> "*");
     }
 
-    @Data
-    @Component
-    public static class TestListener {
-        private boolean consumed = false;
-        private UpdateNodeCommand payload;
-
-        @EventListener(UpdateNodeCommand.class)
-        public void consumeEvent(UpdateNodeCommand command) {
-            payload = command;
-            consumed = true;
-        }
-    }
-
-    @Autowired
-    TestListener testListener;
+    @MockBean
+    private UpdateChainRequestReceivedPublisher updateChainRequestReceivedPublisher;
 
     @Autowired
     private KafkaTemplate<String, NodeEvent> kafkaTemplate;
@@ -87,13 +65,7 @@ class NodeEventConsumerIT {
 
         Awaitility.await()
                 .atMost(ofMinutes(1))
-                .untilAsserted(() -> Assertions.assertTrue(testListener.isConsumed()));
-
-        var result = testListener.getPayload();
-
-        Assertions.assertEquals(uuid, result.node().id());
-        Assertions.assertEquals(host, result.node().host());
-        Assertions.assertEquals(port, result.node().port());
-        Assertions.assertEquals(dateTime, result.dateTime());
+                .untilAsserted(() -> Mockito.verify(updateChainRequestReceivedPublisher)
+                        .publishChainUpdateRequestReceived(any()));
     }
 }
