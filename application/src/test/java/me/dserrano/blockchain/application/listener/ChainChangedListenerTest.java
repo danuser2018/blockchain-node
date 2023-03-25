@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 import static java.time.Duration.ofSeconds;
 
 @SpringBootTest(classes = ChainChangedListener.class)
-public class ChainChangedListenerTest {
+class ChainChangedListenerTest {
     @DynamicPropertySource
     static void setProperties(DynamicPropertyRegistry registry) {
         registry.add("blockchain.nodes.self.publish-rate-ms", () -> 1000L);
@@ -37,7 +37,7 @@ public class ChainChangedListenerTest {
     @Test
     @DisplayName("Test that if enough time has passed then the chain updated event is published")
     @DirtiesContext
-    public void testChangedEventIsPublished() {
+    void testChangedEventIsPublished() {
         Mockito.when(currentTimeMillisSupplier.get()).thenReturn(1010L);
         applicationEventPublisher.publishEvent(ChainUpdated.builder().build());
         Awaitility.await().atMost(ofSeconds(10)).untilAsserted(
@@ -48,7 +48,7 @@ public class ChainChangedListenerTest {
     @Test
     @DisplayName("Test that if enough time has passed then the block added event is published")
     @DirtiesContext
-    public void testBlockAddedEventIsPublished() {
+    void testBlockAddedEventIsPublished() {
         Mockito.when(currentTimeMillisSupplier.get()).thenReturn(1010L);
         applicationEventPublisher.publishEvent(BlockAdded.builder().build());
         Awaitility.await().atMost(ofSeconds(10)).untilAsserted(
@@ -59,7 +59,7 @@ public class ChainChangedListenerTest {
     @Test
     @DisplayName("Test that if not enough time has passed then the block added event is not published")
     @DirtiesContext
-    public void testBlockAddedEventIsNotPublished() {
+    void testBlockAddedEventIsNotPublished() {
         Mockito.when(currentTimeMillisSupplier.get()).thenReturn(500L);
         applicationEventPublisher.publishEvent(BlockAdded.builder().build());
         Awaitility.await().during(ofSeconds(5)).atMost(ofSeconds(6)).untilAsserted(
@@ -70,7 +70,7 @@ public class ChainChangedListenerTest {
     @Test
     @DisplayName("Test that if not enough time has passed then the chain updated event is not published")
     @DirtiesContext
-    public void testChainUpdatedEventIsNotPublished() {
+    void testChainUpdatedEventIsNotPublished() {
         Mockito.when(currentTimeMillisSupplier.get()).thenReturn(500L);
         applicationEventPublisher.publishEvent(ChainUpdated.builder().build());
         Awaitility.await().during(ofSeconds(5)).atMost(ofSeconds(6)).untilAsserted(

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.time.Duration;
 
 @SpringBootTest(classes = {ChainUpdatedPublisher.class, ChainUpdatedPublisherTest.TestConsumer.class})
-public class ChainUpdatedPublisherTest {
+class ChainUpdatedPublisherTest {
     @Component
     public static class TestConsumer {
         boolean consumed = false;
@@ -32,7 +32,7 @@ public class ChainUpdatedPublisherTest {
 
     @Test
     @DisplayName("Test that when produce a ChainUpdated event, it is published")
-    public void testPublishing() {
+    void testPublishing() {
         chainUpdatedPublisher.publishChainUpdated();
         Awaitility.await().atMost(Duration.ofSeconds(10)).untilAsserted(
                 () -> Assertions.assertTrue(testConsumer.consumed)

@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 @SpringBootTest(classes = UpdateChainHandler.class)
-public class UpdateChainHandlerTest {
+class UpdateChainHandlerTest {
     @MockBean
     private ChainUpdatedPublisher chainUpdatedPublisher;
     @Autowired
@@ -17,7 +17,7 @@ public class UpdateChainHandlerTest {
 
     @Test
     @DisplayName("Test notification is created")
-    public void testChainIsUpdated() {
+    void testChainIsUpdated() {
         updateChainHandler.updateChain();
         Mockito.verify(chainUpdatedPublisher).publishChainUpdated();
     }
