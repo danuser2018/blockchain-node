@@ -14,7 +14,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import static java.time.Duration.ofSeconds;
 
 @SpringBootTest(classes = ChainUpdatedListener.class)
-public class ChainUpdatedListenerTest {
+class ChainUpdatedListenerTest {
     @MockBean
     private AddBlockHandler addBlockHandler;
 
@@ -23,7 +23,7 @@ public class ChainUpdatedListenerTest {
 
     @Test
     @DisplayName("Test that ChainUpdated event is consumed")
-    public void testChainUpdatedEventIsConsumed() {
+    void testChainUpdatedEventIsConsumed() {
         applicationEventPublisher.publishEvent(ChainUpdated.builder().build());
         Awaitility.await().atMost(ofSeconds(10)).untilAsserted(
                 () -> Mockito.verify(addBlockHandler).addBlock()

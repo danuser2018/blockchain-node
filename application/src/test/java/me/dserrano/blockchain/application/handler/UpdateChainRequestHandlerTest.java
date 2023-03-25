@@ -11,7 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import static me.dserrano.blockchain.application.model.UpdateChainRequestMother.updateChainRequest;
 
 @SpringBootTest(classes = UpdateChainRequestHandler.class)
-public class UpdateChainRequestHandlerTest {
+class UpdateChainRequestHandlerTest {
     @MockBean
     private UpdateNodeService updateNodeService;
 
@@ -20,7 +20,7 @@ public class UpdateChainRequestHandlerTest {
 
     @Test
     @DisplayName("Test that the update chain request is processed")
-    public void testUpdateChainRequestIsProcessed() {
+    void testUpdateChainRequestIsProcessed() {
         updateChainRequestHandler.processUpdateChainRequest(updateChainRequest);
         Mockito.verify(updateNodeService).update(updateChainRequest.node(), updateChainRequest.dateTime());
     }

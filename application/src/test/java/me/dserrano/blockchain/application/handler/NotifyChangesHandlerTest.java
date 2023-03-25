@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = NotifyChangesHandler.class)
-public class NotifyChangesHandlerTest {
+class NotifyChangesHandlerTest {
     @MockBean
     private NodeQueryService nodeQueryService;
     @MockBean
@@ -28,7 +28,7 @@ public class NotifyChangesHandlerTest {
 
     @Test
     @DisplayName("Test changes are published")
-    public void testChangesArePublished() {
+    void testChangesArePublished() {
         var dateTime = LocalDateTime.of(2022, 12, 31, 0, 0, 0);
         when(nodeQueryService.getSelfNode()).thenReturn(node);
         when(nowSupplier.get()).thenReturn(dateTime);

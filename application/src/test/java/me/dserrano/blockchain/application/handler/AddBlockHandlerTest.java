@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 @SpringBootTest(classes = AddBlockHandler.class)
-public class AddBlockHandlerTest {
+class AddBlockHandlerTest {
     @MockBean
     private BlockAddedPublisher blockAddedPublisher;
 
@@ -18,7 +18,7 @@ public class AddBlockHandlerTest {
 
     @Test
     @DisplayName("Test an event is published")
-    public void testBlockIsAdded() {
+    void testBlockIsAdded() {
         addBlockHandler.addBlock();
         Mockito.verify(blockAddedPublisher).publishBlockAdded();
     }

@@ -16,7 +16,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import static java.time.Duration.ofSeconds;
 
 @SpringBootTest(classes = ContextRefreshedEventListener.class)
-public class ContextRefreshedEventListenerTest {
+class ContextRefreshedEventListenerTest {
     @MockBean
     private UpdateChainHandler updateChainHandler;
 
@@ -29,7 +29,7 @@ public class ContextRefreshedEventListenerTest {
     @Test
     @DisplayName("Test that the ContextRefreshed event is consumed")
     @DirtiesContext
-    public void testContextRefreshedEventIsConsumed() {
+    void testContextRefreshedEventIsConsumed() {
         Awaitility.await().atMost(ofSeconds(5)).untilAsserted(
                 () -> Mockito.verify(updateChainHandler).updateChain()
         );
@@ -37,7 +37,7 @@ public class ContextRefreshedEventListenerTest {
 
     @Test
     @DisplayName("Test that the update chain handler is only invoked one time")
-    public void testUpdateChainHandlerIsOnlyInvokedOneTime() {
+    void testUpdateChainHandlerIsOnlyInvokedOneTime() {
         Awaitility.await().atMost(ofSeconds(5)).untilAsserted(
                 () -> Mockito.verify(updateChainHandler).updateChain()
         );

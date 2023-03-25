@@ -17,7 +17,7 @@ import java.time.Duration;
         UpdateChainRequestReceivedPublisher.class,
         UpdateChainRequestReceivedPublisherTest.TestConsumer.class
 })
-public class UpdateChainRequestReceivedPublisherTest {
+class UpdateChainRequestReceivedPublisherTest {
     @Component
     public static class TestConsumer {
         boolean consumed = false;
@@ -36,7 +36,7 @@ public class UpdateChainRequestReceivedPublisherTest {
 
     @Test
     @DisplayName("Test that when produce a UpdateChainRequestReceived event, it is published")
-    public void testPublishing() {
+    void testPublishing() {
         updateChainRequestReceivedPublisher.publishChainUpdateRequestReceived(
                 new UpdateChainRequestReceived(UpdateChainRequestMother.updateChainRequest)
         );

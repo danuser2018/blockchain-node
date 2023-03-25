@@ -15,7 +15,7 @@ import static java.time.Duration.ofSeconds;
 import static me.dserrano.blockchain.application.model.UpdateChainRequestMother.updateChainRequest;
 
 @SpringBootTest(classes = UpdateChainRequestReceivedListener.class)
-public class UpdateChainRequestReceivedListenerTest {
+class UpdateChainRequestReceivedListenerTest {
     @MockBean
     private UpdateChainRequestHandler updateChainRequestHandler;
     @Autowired
@@ -23,7 +23,7 @@ public class UpdateChainRequestReceivedListenerTest {
 
     @Test
     @DisplayName("Test that UpdateChainRequest received event is consumed")
-    public void testUpdateChainRequestReceivedEventIsConsumed() {
+    void testUpdateChainRequestReceivedEventIsConsumed() {
         applicationEventPublisher.publishEvent(UpdateChainRequestReceived.builder()
                 .updateChainRequest(updateChainRequest)
                 .build()

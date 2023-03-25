@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.time.Duration;
 
 @SpringBootTest(classes = {BlockAddedPublisher.class, BlockAddedPublisherTest.TestConsumer.class})
-public class BlockAddedPublisherTest {
+class BlockAddedPublisherTest {
     @Component
     public static class TestConsumer {
         boolean consumed = false;
@@ -32,7 +32,7 @@ public class BlockAddedPublisherTest {
 
     @Test
     @DisplayName("Test that when produce a BlockAdded event, it is published")
-    public void testPublishing() {
+    void testPublishing() {
         blockAddedPublisher.publishBlockAdded();
         Awaitility.await().atMost(Duration.ofSeconds(10)).untilAsserted(
                 () -> Assertions.assertTrue(testConsumer.consumed)
