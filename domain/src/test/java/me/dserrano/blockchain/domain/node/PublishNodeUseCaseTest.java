@@ -1,6 +1,5 @@
 package me.dserrano.blockchain.domain.node;
 
-import me.dserrano.blockchain.domain.node.PublishNodeServiceImpl;
 import me.dserrano.blockchain.domain.node.ports.primary.PublishNodeService;
 import me.dserrano.blockchain.domain.node.ports.secondary.NodeEventBus;
 import org.junit.jupiter.api.DisplayName;
@@ -14,8 +13,8 @@ import java.time.LocalDateTime;
 import static me.dserrano.blockchain.domain.node.model.NodeMother.node;
 import static org.mockito.Mockito.verify;
 
-@SpringBootTest(classes = PublishNodeServiceImpl.class)
-class PublishNodeServiceImplTest {
+@SpringBootTest(classes = PublishNodeUseCase.class)
+class PublishNodeUseCaseTest {
     @MockBean
     private NodeEventBus nodeEventBus;
 

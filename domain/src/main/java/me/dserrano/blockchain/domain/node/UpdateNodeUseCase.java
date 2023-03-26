@@ -1,21 +1,21 @@
 package me.dserrano.blockchain.domain.node;
 
-import me.dserrano.blockchain.domain.node.ports.primary.UpdateNodeService;
 import me.dserrano.blockchain.domain.node.model.Node;
 import me.dserrano.blockchain.domain.node.ports.primary.NodeQueryService;
+import me.dserrano.blockchain.domain.node.ports.primary.UpdateNodeService;
 import me.dserrano.blockchain.domain.node.ports.secondary.NodeDao;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
-@Component
-public class UpdateNodeServiceImpl implements UpdateNodeService {
+@Service
+public class UpdateNodeUseCase implements UpdateNodeService {
 
     private final NodeQueryService nodeQueryService;
 
     private final NodeDao nodeDao;
 
-    public UpdateNodeServiceImpl(NodeQueryService nodeQueryService, NodeDao nodeDao) {
+    public UpdateNodeUseCase(NodeQueryService nodeQueryService, NodeDao nodeDao) {
         this.nodeQueryService = nodeQueryService;
         this.nodeDao = nodeDao;
     }

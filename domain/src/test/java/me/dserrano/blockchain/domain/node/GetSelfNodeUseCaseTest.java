@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Bean;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest(classes = {NodeQueryServiceImpl.class, NodeQueryServiceImplTest.TestConfig.class})
-class NodeQueryServiceImplTest {
+@SpringBootTest(classes = {GetSelfNodeUseCase.class, GetSelfNodeUseCaseTest.TestConfig.class})
+class GetSelfNodeUseCaseTest {
 
     @TestConfiguration
     public static class TestConfig {

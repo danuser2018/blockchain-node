@@ -1,6 +1,5 @@
 package me.dserrano.blockchain.domain.node;
 
-import me.dserrano.blockchain.domain.node.UpdateNodeServiceImpl;
 import me.dserrano.blockchain.domain.node.ports.primary.NodeQueryService;
 import me.dserrano.blockchain.domain.node.ports.primary.UpdateNodeService;
 import me.dserrano.blockchain.domain.node.ports.secondary.NodeDao;
@@ -16,8 +15,8 @@ import static me.dserrano.blockchain.domain.node.model.NodeMother.anotherNode;
 import static me.dserrano.blockchain.domain.node.model.NodeMother.node;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest(classes = UpdateNodeServiceImpl.class)
-class UpdateNodeServiceImplTest {
+@SpringBootTest(classes = UpdateNodeUseCase.class)
+class UpdateNodeUseCaseTest {
 
     @MockBean
     NodeQueryService nodeQueryService;

@@ -1,14 +1,14 @@
 package me.dserrano.blockchain.infra.h2.node;
 
-import me.dserrano.blockchain.infra.h2.node.mapper.NodeEntityMapper;
-import me.dserrano.blockchain.infra.h2.node.repository.NodeEntityRepository;
 import me.dserrano.blockchain.domain.node.model.Node;
 import me.dserrano.blockchain.domain.node.ports.secondary.NodeDao;
-import org.springframework.stereotype.Component;
+import me.dserrano.blockchain.infra.h2.node.mapper.NodeEntityMapper;
+import me.dserrano.blockchain.infra.h2.node.repository.NodeEntityRepository;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 
-@Component
+@Repository
 public class H2NodeDao implements NodeDao {
     private final NodeEntityMapper nodeEntityMapper;
     private final NodeEntityRepository nodeEntityRepository;

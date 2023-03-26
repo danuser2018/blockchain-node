@@ -1,6 +1,6 @@
 package me.dserrano.blockchain.application.handler;
 
-import me.dserrano.blockchain.domain.node.ports.primary.NodeQueryService;
+import me.dserrano.blockchain.domain.node.ports.primary.GetSelfNodeService;
 import me.dserrano.blockchain.domain.node.ports.primary.PublishNodeService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest(classes = NotifyChangesHandler.class)
 class NotifyChangesHandlerTest {
     @MockBean
-    private NodeQueryService nodeQueryService;
+    private GetSelfNodeService nodeQueryService;
     @MockBean
     private PublishNodeService publishNodeService;
     @MockBean
