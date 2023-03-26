@@ -2,7 +2,7 @@ package me.dserrano.blockchain.domain.node;
 
 import me.dserrano.blockchain.domain.node.model.Node;
 import me.dserrano.blockchain.domain.node.model.NodeMother;
-import me.dserrano.blockchain.domain.node.ports.primary.NodeQueryService;
+import me.dserrano.blockchain.domain.node.ports.primary.NodeService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Bean;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest(classes = {GetSelfNodeUseCase.class, GetSelfNodeUseCaseTest.TestConfig.class})
-class GetSelfNodeUseCaseTest {
+@SpringBootTest(classes = {ObtainSelfNodeUseCase.class, ObtainSelfNodeUseCaseTest.TestConfig.class})
+class ObtainSelfNodeUseCaseTest {
 
     @TestConfiguration
     public static class TestConfig {
@@ -24,12 +24,12 @@ class GetSelfNodeUseCaseTest {
     }
 
     @Autowired
-    NodeQueryService nodeQueryService;
+    ObtainSelfNodeUseCase obtainSelfNodeUseCase;
 
     @Test
     @DisplayName("When call to getSelfNode the selfNode is returned")
     void testReturnSelfNode() {
-        var result = nodeQueryService.getSelfNode();
+        var result = obtainSelfNodeUseCase.getSelfNode();
 
         assertEquals(NodeMother.node, result);
     }

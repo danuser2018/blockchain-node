@@ -1,7 +1,6 @@
 package me.dserrano.blockchain.domain.node;
 
-import me.dserrano.blockchain.domain.node.ports.primary.NodeQueryService;
-import me.dserrano.blockchain.domain.node.ports.primary.UpdateNodeService;
+import me.dserrano.blockchain.domain.node.ports.primary.NodeService;
 import me.dserrano.blockchain.domain.node.ports.secondary.NodeDao;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,37 +16,18 @@ import static org.mockito.Mockito.*;
 
 @SpringBootTest(classes = UpdateNodeUseCase.class)
 class UpdateNodeUseCaseTest {
-
     @MockBean
-    NodeQueryService nodeQueryService;
-
-    @MockBean
-    NodeDao nodeDao;
+    private NodeDao nodeDao;
 
     @Autowired
-    UpdateNodeService updateNodeService;
+    private UpdateNodeUseCase updateNodeUseCase;
 
     @Test
-    @DisplayName("When node is the self node then node dao is not invoked")
-    void testNodeIsSelfNode() {
+    @DisplayName("Update node calls the node dao to store the info")
+    void testUpdateCallsNodeDao() {
         var dateTime = LocalDateTime.now();
+        updateNodeUseCase.update(node, dateTime);
 
-        when(nodeQueryService.getSelfNode()).thenReturn(node);
-
-        updateNodeService.update(node, dateTime);
-
-        verifyNoInteractions(nodeDao);
-    }
-
-    @Test
-    @DisplayName("When node is not the self node then node dao is invoked")
-    void testNodeIsNotSelfNode() {
-        var dateTime = LocalDateTime.now();
-
-        when(nodeQueryService.getSelfNode()).thenReturn(node);
-
-        updateNodeService.update(anotherNode, dateTime);
-
-        verify(nodeDao).saveNodeInfo(anotherNode, dateTime);
+        verify(nodeDao).saveNodeInfo(node, dateTime);
     }
 }

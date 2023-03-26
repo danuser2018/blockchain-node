@@ -1,6 +1,5 @@
 package me.dserrano.blockchain.domain.node;
 
-import me.dserrano.blockchain.domain.node.ports.primary.PublishNodeService;
 import me.dserrano.blockchain.domain.node.ports.secondary.NodeEventBus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,13 +18,13 @@ class PublishNodeUseCaseTest {
     private NodeEventBus nodeEventBus;
 
     @Autowired
-    private PublishNodeService publishNodeService;
+    private PublishNodeUseCase publishNodeUseCase;
 
     @Test
-    @DisplayName("Publish node command handler calls the node event bus to publish the node info")
-    void testPublishCommandHandlerCallsNodeEventBus() {
+    @DisplayName("Publish node calls the node event bus to publish the node info")
+    void testPublishCallsNodeEventBus() {
         var dateTime = LocalDateTime.now();
-        publishNodeService.publish(node, dateTime);
+        publishNodeUseCase.publish(node, dateTime);
 
         verify(nodeEventBus).publish(node, dateTime);
     }

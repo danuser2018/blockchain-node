@@ -1,15 +1,13 @@
 package me.dserrano.blockchain.domain.node;
 
+import lombok.RequiredArgsConstructor;
 import me.dserrano.blockchain.domain.node.model.Node;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-public class GetSelfNodeUseCase {
+@Service
+@RequiredArgsConstructor
+public class ObtainSelfNodeUseCase {
     private final Node selfNode;
-
-    public GetSelfNodeUseCase(Node selfNode) {
-        this.selfNode = selfNode;
-    }
 
     public Node getSelfNode() {
         return selfNode;
