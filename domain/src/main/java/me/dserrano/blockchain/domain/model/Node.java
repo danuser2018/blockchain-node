@@ -1,4 +1,4 @@
-package me.dserrano.blockchain.domain.node.model;
+package me.dserrano.blockchain.domain.model;
 
 import lombok.Builder;
 

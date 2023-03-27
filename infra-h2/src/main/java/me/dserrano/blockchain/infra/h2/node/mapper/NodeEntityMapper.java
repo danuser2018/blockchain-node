@@ -1,7 +1,7 @@
 package me.dserrano.blockchain.infra.h2.node.mapper;
 
 import me.dserrano.blockchain.infra.h2.node.model.NodeEntity;
-import me.dserrano.blockchain.domain.node.model.Node;
+import me.dserrano.blockchain.domain.model.Node;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

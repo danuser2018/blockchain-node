@@ -1,6 +1,6 @@
 package me.dserrano.blockchain.application.handler;
 
-import me.dserrano.blockchain.domain.node.ports.primary.UpdateNodeService;
+import me.dserrano.blockchain.domain.ports.primary.NodeService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -13,7 +13,7 @@ import static me.dserrano.blockchain.application.model.UpdateChainRequestMother.
 @SpringBootTest(classes = UpdateChainRequestHandler.class)
 class UpdateChainRequestHandlerTest {
     @MockBean
-    private UpdateNodeService updateNodeService;
+    private NodeService nodeService;
 
     @Autowired
     private UpdateChainRequestHandler updateChainRequestHandler;
@@ -22,6 +22,6 @@ class UpdateChainRequestHandlerTest {
     @DisplayName("Test that the update chain request is processed")
     void testUpdateChainRequestIsProcessed() {
         updateChainRequestHandler.processUpdateChainRequest(updateChainRequest);
-        Mockito.verify(updateNodeService).update(updateChainRequest.node(), updateChainRequest.dateTime());
+        Mockito.verify(nodeService).storeOtherNode(updateChainRequest.node(), updateChainRequest.dateTime());
     }
 }

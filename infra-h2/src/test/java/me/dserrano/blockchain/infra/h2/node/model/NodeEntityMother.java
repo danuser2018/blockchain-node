@@ -1,6 +1,6 @@
 package me.dserrano.blockchain.infra.h2.node.model;
 
-import me.dserrano.blockchain.domain.node.model.Node;
+import me.dserrano.blockchain.domain.model.Node;
 
 import java.time.LocalDateTime;
 

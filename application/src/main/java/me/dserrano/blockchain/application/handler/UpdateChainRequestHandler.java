@@ -1,18 +1,16 @@
 package me.dserrano.blockchain.application.handler;
 
+import lombok.RequiredArgsConstructor;
 import me.dserrano.blockchain.application.model.UpdateChainRequest;
-import me.dserrano.blockchain.domain.node.ports.primary.UpdateNodeService;
+import me.dserrano.blockchain.domain.ports.primary.NodeService;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class UpdateChainRequestHandler {
-    private final UpdateNodeService updateNodeService;
-
-    public UpdateChainRequestHandler(UpdateNodeService updateNodeService) {
-        this.updateNodeService = updateNodeService;
-    }
+    private final NodeService nodeService;
 
     public void processUpdateChainRequest(UpdateChainRequest updateChainRequest) {
-        updateNodeService.update(updateChainRequest.node(), updateChainRequest.dateTime());
+        nodeService.storeOtherNode(updateChainRequest.node(), updateChainRequest.dateTime());
     }
 }
