@@ -1,6 +1,7 @@
-package me.dserrano.blockchain.domain.node;
+package me.dserrano.blockchain.domain.usecase.node;
 
-import me.dserrano.blockchain.domain.node.ports.secondary.NodeEventBus;
+import me.dserrano.blockchain.domain.ports.secondary.NodeEventBus;
+import me.dserrano.blockchain.domain.usecase.node.PublishNodeUseCase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDateTime;
 
-import static me.dserrano.blockchain.domain.node.model.NodeMother.node;
+import static me.dserrano.blockchain.domain.model.NodeMother.node;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest(classes = PublishNodeUseCase.class)

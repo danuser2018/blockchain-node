@@ -1,8 +1,8 @@
 package me.dserrano.blockchain.infra.kafka.node;
 
 import lombok.RequiredArgsConstructor;
-import me.dserrano.blockchain.domain.node.model.Node;
-import me.dserrano.blockchain.domain.node.ports.secondary.NodeEventBus;
+import me.dserrano.blockchain.domain.model.Node;
+import me.dserrano.blockchain.domain.ports.secondary.NodeEventBus;
 import me.dserrano.blockchain.infra.kafka.node.mapper.NodeEventMapper;
 import me.dserrano.blockchain.infra.kafka.node.producer.NodeEventProducer;
 import org.springframework.stereotype.Component;

@@ -1,11 +1,11 @@
-package me.dserrano.blockchain.domain.node.service;
+package me.dserrano.blockchain.domain.service;
 
 import lombok.RequiredArgsConstructor;
-import me.dserrano.blockchain.domain.node.ObtainSelfNodeUseCase;
-import me.dserrano.blockchain.domain.node.PublishNodeUseCase;
-import me.dserrano.blockchain.domain.node.UpdateNodeUseCase;
-import me.dserrano.blockchain.domain.node.model.Node;
-import me.dserrano.blockchain.domain.node.ports.primary.NodeService;
+import me.dserrano.blockchain.domain.usecase.node.ObtainSelfNodeUseCase;
+import me.dserrano.blockchain.domain.usecase.node.PublishNodeUseCase;
+import me.dserrano.blockchain.domain.usecase.node.UpdateNodeUseCase;
+import me.dserrano.blockchain.domain.model.Node;
+import me.dserrano.blockchain.domain.ports.primary.NodeService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

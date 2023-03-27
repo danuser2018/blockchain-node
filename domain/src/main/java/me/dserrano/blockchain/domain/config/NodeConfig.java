@@ -1,6 +1,6 @@
-package me.dserrano.blockchain.domain.node.config;
+package me.dserrano.blockchain.domain.config;
 
-import me.dserrano.blockchain.domain.node.model.Node;
+import me.dserrano.blockchain.domain.model.Node;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

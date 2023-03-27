@@ -1,8 +1,7 @@
-package me.dserrano.blockchain.domain.node;
+package me.dserrano.blockchain.domain.usecase.node;
 
-import me.dserrano.blockchain.domain.node.model.Node;
-import me.dserrano.blockchain.domain.node.model.NodeMother;
-import me.dserrano.blockchain.domain.node.ports.primary.NodeService;
+import me.dserrano.blockchain.domain.model.NodeMother;
+import me.dserrano.blockchain.domain.model.Node;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

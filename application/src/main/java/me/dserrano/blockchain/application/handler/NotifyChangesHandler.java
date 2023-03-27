@@ -1,7 +1,7 @@
 package me.dserrano.blockchain.application.handler;
 
 import lombok.RequiredArgsConstructor;
-import me.dserrano.blockchain.domain.node.ports.primary.NodeService;
+import me.dserrano.blockchain.domain.ports.primary.NodeService;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

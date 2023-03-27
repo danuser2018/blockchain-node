@@ -1,6 +1,6 @@
 package me.dserrano.blockchain.application.handler;
 
-import me.dserrano.blockchain.domain.node.ports.primary.NodeService;
+import me.dserrano.blockchain.domain.ports.primary.NodeService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

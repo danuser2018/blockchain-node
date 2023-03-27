@@ -1,6 +1,6 @@
-package me.dserrano.blockchain.domain.node.ports.primary;
+package me.dserrano.blockchain.domain.ports.primary;
 
-import me.dserrano.blockchain.domain.node.model.Node;
+import me.dserrano.blockchain.domain.model.Node;
 
 import java.time.LocalDateTime;
 

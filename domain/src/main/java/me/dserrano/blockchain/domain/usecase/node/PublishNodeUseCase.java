@@ -1,8 +1,8 @@
-package me.dserrano.blockchain.domain.node;
+package me.dserrano.blockchain.domain.usecase.node;
 
 import lombok.RequiredArgsConstructor;
-import me.dserrano.blockchain.domain.node.model.Node;
-import me.dserrano.blockchain.domain.node.ports.secondary.NodeEventBus;
+import me.dserrano.blockchain.domain.model.Node;
+import me.dserrano.blockchain.domain.ports.secondary.NodeEventBus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

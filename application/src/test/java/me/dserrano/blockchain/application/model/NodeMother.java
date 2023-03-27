@@ -1,6 +1,6 @@
 package me.dserrano.blockchain.application.model;
 
-import me.dserrano.blockchain.domain.node.model.Node;
+import me.dserrano.blockchain.domain.model.Node;
 
 public class NodeMother {
     public static final String uuid = "6405c233-3208-428d-ad8e-9cf17f164d85";

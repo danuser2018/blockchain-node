@@ -1,8 +1,8 @@
 package me.dserrano.blockchain.infra.h2.node;
 
 import lombok.RequiredArgsConstructor;
-import me.dserrano.blockchain.domain.node.model.Node;
-import me.dserrano.blockchain.domain.node.ports.secondary.NodeDao;
+import me.dserrano.blockchain.domain.model.Node;
+import me.dserrano.blockchain.domain.ports.secondary.NodeDao;
 import me.dserrano.blockchain.infra.h2.node.mapper.NodeEntityMapper;
 import me.dserrano.blockchain.infra.h2.node.repository.NodeEntityRepository;
 import org.springframework.stereotype.Repository;

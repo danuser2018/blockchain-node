@@ -2,7 +2,7 @@ package me.dserrano.blockchain.application.handler;
 
 import lombok.RequiredArgsConstructor;
 import me.dserrano.blockchain.application.model.UpdateChainRequest;
-import me.dserrano.blockchain.domain.node.ports.primary.NodeService;
+import me.dserrano.blockchain.domain.ports.primary.NodeService;
 import org.springframework.stereotype.Component;
 
 @Component

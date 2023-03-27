@@ -1,4 +1,4 @@
-package me.dserrano.blockchain.domain.node.model;
+package me.dserrano.blockchain.domain.model;
 
 public class NodeMother {
     public static final String uuid = "6405c233-3208-428d-ad8e-9cf17f164d85";
